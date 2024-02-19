@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxwgroup.oaserver.mapper.system.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.jxwgroup.oaserver.entity.system.User">
+        <result column="id" property="id" />
+        <result column="reg_usercode" property="regUsercode" />
+        <result column="reg_username" property="regUsername" />
+        <result column="reg_date" property="regDate" />
+        <result column="edit_usercode" property="editUsercode" />
+        <result column="edit_username" property="editUsername" />
+        <result column="edit_date" property="editDate" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+        <result column="joined_date" property="joinedDate" />
+        <result column="termination_date" property="terminationDate" />
+        <result column="department_id" property="departmentId" />
+        <result column="post_id" property="postId" />
+        <result column="is_leader" property="isLeader" />
+        <result column="sex" property="sex" />
+        <result column="phone" property="phone" />
+        <result column="sos_phone" property="sosPhone" />
+        <result column="family_address" property="familyAddress" />
+        <result column="id_card" property="idCard" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        reg_usercode,
+        reg_username,
+        reg_date,
+        edit_usercode,
+        edit_username,
+        edit_date,
+        username, password, name, age, joined_date, termination_date, department_id, post_id, is_leader, sex, phone, sos_hone, family_address, id_card
+    </sql>
+
+    <select id="pageFind" resultType="com.jxwgroup.oaserver.vo.system.UserDTO">
+        select *,case when termination_date is null then '0' else '1' end user_status from sys_user where id is not null
+        <if test="findOperate.getSearchVal() != null and findOperate.getSearchVal().length() != 0">
+            and username like '%${findOperate.searchVal}%'
+        </if>
+    </select>
+
+    <select id="findByUsername" resultType="com.jxwgroup.oaserver.entity.system.User">
+        select * from sys_user where username = #{username}
+    </select>
+
+    <select id="countCheck" resultType="integer">
+        select count(1) from sys_user where username = #{username}
+        <if test="id != null and id.length() > 0">
+            and id &lt;&gt; #{id}
+        </if>
+    </select>
+
+    <delete id="deleteById">
+        delete from sys_user where id in (${ids})
+    </delete>
+
+</mapper>

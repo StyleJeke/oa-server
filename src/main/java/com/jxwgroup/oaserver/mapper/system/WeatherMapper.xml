@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxwgroup.oaserver.mapper.system.WeatherMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.jxwgroup.oaserver.entity.system.Weather">
+        <result column="id" property="id" />
+        <result column="obs_time" property="obsTime" />
+        <result column="temp" property="temp" />
+        <result column="feels_like" property="feelsLike" />
+        <result column="icon" property="icon" />
+        <result column="text" property="text" />
+        <result column="wind360" property="wind360" />
+        <result column="wind_dir" property="windDir" />
+        <result column="wind_scale" property="windScale" />
+        <result column="wind_speed" property="windSpeed" />
+        <result column="humidity" property="humidity" />
+        <result column="precip" property="precip" />
+        <result column="pressure" property="pressure" />
+        <result column="vis" property="vis" />
+        <result column="cloud" property="cloud" />
+        <result column="dew" property="dew" />
+        <result column="city" property="city" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        obs_time, temp, feels_like, icon, text, wind360, wind_dir, wind_scale, wind_speed, humidity, precip, pressure, vis, cloud, dew, city
+    </sql>
+
+    <select id="findByCity" resultType="string">
+        select id from sys_weather where city = #{city}
+    </select>
+
+    <select id="findByCityWeather" resultType="com.jxwgroup.oaserver.entity.system.Weather">
+        select obs_time, temp, feels_like, icon, text, wind360, wind_dir, wind_scale, wind_speed, humidity, precip, pressure, vis, cloud, dew, city from sys_weather where city = #{city}
+    </select>
+
+</mapper>

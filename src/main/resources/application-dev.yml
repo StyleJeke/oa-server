@@ -1,0 +1,26 @@
+server:
+  port: 8155
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: oa-server
+  datasource:
+    url: jdbc:mysql://60.204.222.228:3306/oa_cooperate_with?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: blzg330513
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.jxwgroup.oaserver.controller: debug
+#是否开启定时任务
+scheduled:
+  enable: false
+project-config:
+  weather-key: b0f223613c304f738c46742b87f72c12 # 和风天气appKey
+  aggregate-key: 895a12652404907ac628fcf70e208932 # 聚合数据appKey
+  index-path: dashboard_workbench #路由首页

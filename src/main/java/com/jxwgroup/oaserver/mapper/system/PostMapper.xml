@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxwgroup.oaserver.mapper.system.PostMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.jxwgroup.oaserver.entity.system.Post">
+        <result column="id" property="id" />
+        <result column="reg_usercode" property="regUsercode" />
+        <result column="reg_username" property="regUsername" />
+        <result column="reg_date" property="regDate" />
+        <result column="edit_usercode" property="editUsercode" />
+        <result column="edit_username" property="editUsername" />
+        <result column="edit_date" property="editDate" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        reg_usercode,
+        reg_username,
+        reg_date,
+        edit_usercode,
+        edit_username,
+        edit_date,
+        code, name
+    </sql>
+
+    <delete id="deleteById" >
+        delete from sys_post where id in (${id})
+    </delete>
+
+</mapper>

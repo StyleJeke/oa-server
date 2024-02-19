@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxwgroup.oaserver.mapper.global.RolePermMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.jxwgroup.oaserver.entity.global.RolePerm">
+        <result column="role_id" property="roleId" />
+        <result column="menu_id" property="menuId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        role_id, menu_id
+    </sql>
+
+    <select id="findByRoleId" resultType="string">
+        select menu_id from gs_role_perm where role_id = #{id}
+    </select>
+
+    <delete id="deleteByRoleId">
+        delete from gs_role_perm where role_id = #{roleId}
+    </delete>
+
+</mapper>
